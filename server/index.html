@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> Trainer </title>
+    <script src = "faker.min.js" type = "text/javascript"></script>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="fabric.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="canvas-toBlob.js"></script>
+</head>
+<body>
+<canvas style="border: 1px solid black" id="c" >  </canvas>
+Creating data ...
+<a class="saveImage"> Download Inage </a>
+<a class="saveText"> Downoad Text </a>
+<button id="rName"> Random Name Generator </button>
+<button id="news"> Scrape News feed </button>
+
+<style>
+    @font-face {
+        font-family: 'BMitra';
+        src: url('fonts/BMitra.eot?#') format('eot'),  /* IE6–8 */
+        url('fonts/BMitra.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url('fonts/BMitra.ttf') format('truetype');  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    }
+
+    @font-face {
+        font-family: 'BTitrBold';
+        src: url('fonts/BTitrBold.eot?#') format('eot'),  /* IE6–8 */
+        url('fonts/BTitrBold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url('fonts/BTitrBold.ttf') format('truetype');  /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    }
+    @font-face {
+        font-family: "IRANSans";
+        url('fonts/IRANSans.woff') format('woff') ;
+    }
+
+
+</style>
+
+<script>
+    var count = 100 ;
+    faker.locale = "fa" ;
+    canvas = new fabric.Canvas('c');
+    canvas.backgroundColor = "white" ;
+    var names = [] ;
+
+    var generateArray = function ( arr ) {
+        if ( arr.length == 0 ) { return }
+        canvas.setWidth(1500) ;
+        canvas.setHeight(300) ;
+        var _ttext = arr.pop() ;
+        if ( _ttext == " " || _ttext.length < 4 ) { console.log('skipping ' , _ttext) ; generateArray(arr) ; return  }
+        console.log(_ttext , arr.length ) ;
+        var text = new fabric.Text( _ttext  , {
+            fontFamily : "BMitra" ,
+            fontSize : 162,
+            textAlign : "center"
+        } ) ;
+        text.set('left' , 0) ;
+        canvas.add(text);
+        canvas.setWidth(text.width + 500) ;
+        canvas.renderAll() ;
+        setTimeout(function () {
+            canvas.renderAll() ;
+            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            $('.saveImage').attr({
+                'download': arr.length + "_" + _ttext ,  /// set filename
+                'href'    : image              /// set data-uri
+            }) ;
+            $('.saveImage')[0].click() ;
+
+
+            canvas.clear() ;
+            canvas.renderAll() ;
+            generateArray(arr) ;
+        } , 50  )
+
+    } ;
+
+
+    var generate = function ( i , font  ) {
+        if ( i == 0 ) {
+            return
+        }
+        var randomName = faker.name.findName() ;
+        canvas.setWidth(3000) ;
+        canvas.setHeight(300) ;
+        var text = new fabric.Text(randomName.replace("(" , " ").replace(")" , " "), {
+            fontFamily : "BMitra" ,
+            fontSize : 222,
+            textAlign : "center"
+        } ) ;
+        text.set('left' , 0) ;
+        canvas.add(text);
+        canvas.renderAll() ;
+        setTimeout(function () {
+            canvas.renderAll() ;
+            canvas.setWidth(text.width + 200 ) ;
+            var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+            $('.saveImage').attr({
+                'download': i + "_" + randomName ,  /// set filename
+                'href'    : image              /// set data-uri
+            }) ;
+            $('.saveImage')[0].click() ;
+            canvas.clear() ;
+
+            canvas.renderAll() ;
+            generate(--i) ;
+        } , 100 )
+    } ;
+
+    function readTextFile(file)
+    {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = function ()
+        {
+            if(rawFile.readyState === 4)
+            {
+                if(rawFile.status === 200 || rawFile.status == 0)
+                {
+                    var allText = rawFile.responseText;
+                    var arr = allText.split("\n") ;
+                    generateArray(arr) ;
+                }
+            }
+        } ;
+        rawFile.send(null);
+    }
+
+
+    $("#rName").click(function () {
+        generate( 25000  ) ;
+    }) ;
+
+    $("#news").click(function () {
+        readTextFile("news_data_10_2split_.txt")
+    }) ;
+
+
+
+
+</script>
+
+</body>
+</html>
