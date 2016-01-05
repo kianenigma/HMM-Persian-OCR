@@ -4,7 +4,7 @@ var $$ = require("cheerio") ;
 var fs = require('fs') ;
 
 
-var max = 10  ;
+var max = 2  ;
 if (!String.prototype.trim) {
     (function(){
         // Make sure we trim BOM and NBSP
@@ -111,9 +111,9 @@ var recReq = function (page) {
             }
         }) ;
 } ;
-var stream = fs.createWriteStream("news_data_" + max + ".txt");
+var stream = fs.createWriteStream("text_repo/news_data_" + max + ".txt");
 stream.once('open', function(fd) {
-    fs.writeFile("news_data_" + max + ".txt", '', function(){
+    fs.writeFile("text_repo/news_data_" + max + ".txt", '', function(){
 	stream.write(["ا","ب","پ","ت","ث","ج","چ","ح","خ","د", "ظ","ط","ض","ص","ش","س","ژ","ز","ر","ذ","و","ن","م","ل","گ","ک","ق","ف","غ","ع","ی" , "ي" , "ئ" , "آ" , "ؤ", "ة", "أ", "إ", "ك", "ء", "ه", " " ].join(''))
         console.log('file cleared') ;
         recReq(1) ;

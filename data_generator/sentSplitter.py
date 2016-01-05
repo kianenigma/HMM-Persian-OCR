@@ -10,9 +10,10 @@ o = []
 
 for s in sents :
     pred = s.split(" ")
+    pred[-1] = pred[-1].replace('\n' , '') 
     #for idx , w in enumerate(pred) :
-	#if len(w) >= 4 :
-	    #o.append(w)
+#	if len(w) >= 4 :
+#	    o.append(w)
 
 	#out.write(w +  ("\n" if idx != len(pred)-1 else "" ) ) 
     for i in range(2 , 3) :
@@ -23,14 +24,17 @@ for s in sents :
 	    for ch in pred[curr:curr+step] :
 		disc += ch
 		disc += " "
-	    out.write(disc + "\n") 
+	    #out.write(disc + "\n") 
 	    o.append(disc)
 	    curr += step
 	s = ""
 	for j in range(i) :
 	    s += pred[j] + " "
-        o.append(s)
-	out.write(s + ("\n" if j != len(pred) else "" )) 
+	if len(s) >= 2 :  
+            o.append(s)
+	#out.write(s + ("\n" if j != len(pred) else "" )) 
  
 for l in o :
-    out.write(l.replace('\n' , '').replace("  " , " ").strip() + "\n" )
+    if l != " " and l != "\n" and len(l) > 3  :
+        fix = l.replace('\n' , '').replace("   " , " ").strip() 
+        out.write(fix + "\n" )
