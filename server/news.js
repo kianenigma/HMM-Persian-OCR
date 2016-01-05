@@ -3,7 +3,8 @@ var request = require('request');
 var $$ = require("cheerio") ;
 var fs = require('fs') ;
 
-var max = 10000  ;
+
+var max = 10  ;
 if (!String.prototype.trim) {
     (function(){
         // Make sure we trim BOM and NBSP
