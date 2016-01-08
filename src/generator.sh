@@ -19,13 +19,13 @@ while read p; do
 	echo $p >> $ROOT/text/train_$i.txt w
 	
 	pngtopnm $ROOT/img/train_$i.png > $ROOT/img/train_$i.pnm
-	#rm $ROOT/img/train_$i.png
+	rm $ROOT/img/train_$i.png
 	
 	ppmtopgm $ROOT/img/train_$i.pnm > $ROOT/img/train_$i.pgm 
-	#rm $ROOT/img/train_$i.pnm 
+	rm $ROOT/img/train_$i.pnm 
 
 	pgmtopbm $ROOT/img/train_$i.pgm > $ROOT/img/train_$i.pbm 
-	#rm $ROOT/img/train_$i.pgm 
+	rm $ROOT/img/train_$i.pgm 
 
 	i=$[$i+1]
 	echo "generating image #$i with data $p"
