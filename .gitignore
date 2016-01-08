@@ -1,4 +1,4 @@
-data_generator/outdir/*
-data_generator/node_modules
+src/outdir/*
+src/text_repo/node_modules
 *.DS_STORE
 *.idea
