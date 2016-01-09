@@ -27,7 +27,7 @@ while read p; do
 	pgmtopbm $ROOT/img/train_$i.pgm > $ROOT/img/train_$i.pbm 
 	#rm $ROOT/img/train_$i.pgm 
 
-	i=$[$i+1]
+	i=$(($i+1))
 	echo "generating image #$i with data $p"
 done < $1
 
