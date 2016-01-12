@@ -1,4 +1,5 @@
-src/outdir/*
-src/text_repo/node_modules
+
+test/text_repo/node_modules
 *.DS_STORE
 *.idea
+test/*
