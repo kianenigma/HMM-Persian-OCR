@@ -19,6 +19,8 @@ HPO_CreateTestMLF.sh data/text samplesRef.mlf
 HPO_TrainHMMs.sh train.lst hmm proto samples.mlf HMMsList $1 $2
 echo "HPO_TrainHMMs.sh train.lst hmm proto samples.mlf HMMsList $1 $2" >> info.config
 echo "Done Training $(date)" >> info.config
+
+HVite -A -T 1 -o ST -p -17 -s 50 -S train.lst -H hmm/hmm_$2/Macros_hmm -l "*" -i res_all.mlf -w Network Dictionary HMMsList
 for j in `seq 0 9`;
 	do 
         HVite -A -T 1 -o ST -p -17 -s 50 -S test_sh_$j.lst -H hmm/hmm_$2/Macros_hmm -l "*" -i res$j.mlf -w Network Dictionary HMMsList
