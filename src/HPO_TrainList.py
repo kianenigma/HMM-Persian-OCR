@@ -8,7 +8,7 @@ import random
 for fea in os.listdir('feaDir') :
     if os.stat('feaDir/' + fea).st_size == 12 :
 	#Must be checked 
-    #os.remove('feaDir/' + fea)
+    os.remove('feaDir/' + fea)
 	print "delete file" , fea
 print sys.argv
 f = open("train.lst" , "w" ) 

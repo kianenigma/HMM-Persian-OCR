@@ -38,7 +38,7 @@ do
   #pgmslope|		# Perform "Slope" correction
   #pgmslant -M M |  # Perform "Slant" correction using Std. Desv.
   pgmnormsize -c 6 -a 1 -d 1 |	# Perform size normalization
-  pgmtextfea -c $DIM -i data/$d > /tmp/tmp.fea 	# Compute feature extraction     
+  pgmtextfea -c $DIM  > /tmp/tmp.fea 	# Compute feature extraction     
   pfl2htk /tmp/tmp.fea $DDEST/${d/pbm/fea} # Convert to HTK format
 done
 rm /tmp/tmp.fea
