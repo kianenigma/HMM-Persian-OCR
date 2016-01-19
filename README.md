@@ -1,7 +1,7 @@
 # HPO - Hidden Markov Model Based Persian OCR 
 
 A Hidden Markov Model Based Persian OCR . 
-This was originally a the Project of Artificial Intelligance Course at Iran University of Science and Technology . 
+This was originally a the Project of [Artificial Intelligance Course](http://www.boute.ir/iust-ai-94/persian-ocr) at Iran University of Science and Technology . 
 
 # Requirements 
 
@@ -51,6 +51,7 @@ The three parameters are :
 + 20 : text feature extraction Dimension 
 
 **Note** `HPO_Eval` Embeds and automates the usage of a series of alot of ther programms. you can read the *Applicatin Directory* Section and read the script itself to get more knowledge of how it works 
+
 **Note2** As you might see by taking a look at the contents of `HPO_Eval` ( and more embeded scripts ) you will notice that the Initialazition and evaluation step has ALOT more parametres. these three are included here just for convenience and the user might change them as he or her wants. 
 
 Teh above script almost does all of the remaining job. genrate Prototype HHMs, generate MLF ( Label files ) from the tarin data, generate rabdom test scripts, train the HMMs and perform 10 random test. 
