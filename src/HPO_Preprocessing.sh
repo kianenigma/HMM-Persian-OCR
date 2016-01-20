@@ -35,18 +35,20 @@ do
   echo $f 1>&2
   pnmdepth 255 $f |	# Change to grey Level
   pgmmedian |		# Smooth the image
-  #pgmslope|		# Perform "Slope" correction
-  #pgmslant -M M |  # Perform "Slant" correction using Std. Desv.
-  pgmnormsize -c 6 -a 1 -d 1 |	# Perform size normalization
+  pgmslope|		# Perform "Slope" correction
+  pgmslant -M M |  # Perform "Slant" correction using Std. Desv.
+  pgmnormsize -c 5 -a 1 -d 1 |	# Perform size normalization
   pgmtextfea -c $DIM  > /tmp/tmp.fea 	# Compute feature extraction     
   pfl2htk /tmp/tmp.fea $DDEST/${d/pbm/fea} # Convert to HTK format
-  echo "CHECKING : $DDEST/${d/pbm/fea}"
+ 
+  echo " -- CHECKING : $DDEST/${d/pbm/fea}"
   
   P="$(HList -h $DDEST/${d/pbm/fea} | sed -n '3p' | cut -b 18-20)"
   
   echo "== $P $(($3*3))"
   if [ $P -ne $(($3*3)) ]; then 
     echo "CHECKING : $DDEST/${d/pbm/fea} FAILED."
+    rm $DDEST/${d/pbm/fea}
   fi 
   
 done
