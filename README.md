@@ -74,35 +74,35 @@ WORD: %Corr=97.97, Acc=97.76 [H=482, D=4, S=6, I=1, N=492]
 
 the contents of `src` directory of HPO is described here : 
 
-## HPO_CreateHMMsList 
+#### HPO_CreateHMMsList 
 parses all of the text data used for training and creates a list of all the used charachters. 
 Parameters : 
-+ <InputDir> : Path of stored text files ( data/text etc. ) 
-+ <outDir> : Path to save the result 
++ InputDir : Path of stored text files ( data/text etc. ) 
++ OutDir : Path to save the result 
 Example : 
 
   
-## HPO_CreateHMMsTopology
+#### HPO_CreateHMMsTopology
 creates a sample prototype word HMMs . uses the standards of HTK for definition 
 Parameters : 
-+ <Vector-Size> : fixed size for observation vector ( at this stage, it should always be same as feature extraction dimention size times 3 ) 
-+ <State-Number> : Number of states for each Model
++ Vector-Size : fixed size for observation vector ( at this stage, it should always be same as feature extraction dimention size times 3 ) 
++ State-Number : Number of states for each Model
 
   
 
-## **HPO_CreateHTKDicNet**
-## **HPO_CreateTestMLF**
-## **HPO_CreateTrainMLF**
-## **HPO_DBGenerator**
-## **HPO_Eval**
-## **HPO_Generate**
-## **HPO_HTKFeatShow**
-## **HPO_Preprocessing**
-+ **HPO_TestMe**
-+ **HPO_TestUs**
-+ **HPO_TextTrim**
-+ **HPO_TrainHMMs**
-+ **HPO_TrainList**
+#### HPO_CreateHTKDicNet
+#### HPO_CreateTestMLF
+#### HPO_CreateTrainMLF
+#### HPO_DBGenerator
+#### HPO_Eval
+#### HPO_Generate
+#### HPO_HTKFeatShow
+#### HPO_Preprocessing
+#### HPO_TestMe
+#### HPO_TestUs
+#### HPO_TextTrim
+#### HPO_TrainHMMs
+#### HPO_TrainList
 
 
 # Notes 
