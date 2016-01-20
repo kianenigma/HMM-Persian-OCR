@@ -9,6 +9,7 @@ This was originally a the Project of [Artificial Intelligence Course](http://www
 While a wide variety of papers and resources could be found, i personally found the below two resources the best. 
 +  [A tutorial on hidden Markov models and selected applications in speech recognition ]() 
 +  [Matemathicalmonk Youtube playlist on Machine learning ( HMM Section )](https://www.youtube.com/user/mathematicalmonk/playlists)
++  [HTK Book](http://htk.eng.cam.ac.uk/docs/docs.shtml) . a complete tutorial on usage of HTK. recomended for users to read at least the first 4 chapters. 
 
 It's recommended to read the first paper mentioned above ( or just take a short look ) and then continue the rest of the steps.
 
@@ -69,12 +70,39 @@ WORD: %Corr=97.97, Acc=97.76 [H=482, D=4, S=6, I=1, N=492]
 ===================================================================
 ```
   
-## Generating 
-
-## Training 
-
-## Evaluating 
-
 # Application Directory 
+
+the contents of `src` directory of HPO is described here : 
+
+## HPO_CreateHMMsList 
+parses all of the text data used for training and creates a list of all the used charachters. 
+Parameters : 
++ <InputDir> : Path of stored text files ( data/text etc. ) 
++ <outDir> : Path to save the result 
+Example : 
+
+  
+## HPO_CreateHMMsTopology
+creates a sample prototype word HMMs . uses the standards of HTK for definition 
+Parameters : 
++ <Vector-Size> : fixed size for observation vector ( at this stage, it should always be same as feature extraction dimention size times 3 ) 
++ <State-Number> : Number of states for each Model
+
+  
+
+## **HPO_CreateHTKDicNet**
+## **HPO_CreateTestMLF**
+## **HPO_CreateTrainMLF**
+## **HPO_DBGenerator**
+## **HPO_Eval**
+## **HPO_Generate**
+## **HPO_HTKFeatShow**
+## **HPO_Preprocessing**
++ **HPO_TestMe**
++ **HPO_TestUs**
++ **HPO_TextTrim**
++ **HPO_TrainHMMs**
++ **HPO_TrainList**
+
 
 # Notes 
