@@ -14,8 +14,8 @@
 export PATH=$PATH:$HOME/bin:.
 
 NAME=${0##*/}
-if [ $# -ne 3 ]; then
-  echo "Usage: $NAME <PBMSource-Dir> <featVect-Dir> <Dim>" 1>&2
+if [ $# -ne 4 ]; then
+  echo "Usage: $NAME <PBMSource-Dir> <featVect-Dir> <Dim> <FilterType>" 1>&2
   exit 1
 fi
 
@@ -37,11 +37,11 @@ do
   pgmmedian |		# Smooth the image
   pgmslope|		# Perform "Slope" correction
   pgmslant -M M |  # Perform "Slant" correction using Std. Desv.
-  pgmnormsize -c 5 -a 1 -d 1 |	# Perform size normalization
-  pgmtextfea -c $DIM  > /tmp/tmp.fea 	# Compute feature extraction     
+  pgmnormsize -c 5 -a 1 -d 1  |	# Perform size normalization
+  pgmtextfea -c $DIM -f $4   > /tmp/tmp.fea 	# Compute feature extraction     
   pfl2htk /tmp/tmp.fea $DDEST/${d/pbm/fea} # Convert to HTK format
- 
-  echo " -- CHECKING : $DDEST/${d/pbm/fea}"
+  echo "textfea -c $DIM -f $4" 
+  echo "--> CHECKING : $DDEST/${d/pbm/fea}"
   
   P="$(HList -h $DDEST/${d/pbm/fea} | sed -n '3p' | cut -b 18-20)"
   

@@ -22,7 +22,7 @@ NUM_ITER=$6
 NUM_GAUSS=$7
 
 
-FLAGSHEREST="-A -T 1 -v 0.01 -m 3"
+FLAGSHEREST="-A -T 1 -v 0.01 -m 3 "
 
 g=1
 while [ $g -le $NUM_GAUSS ]; do

@@ -17,7 +17,7 @@ mkdir $ROOT/img
 mkdir $ROOT/text
 
 while read p; do
-	pango-view --text "$p" --no-display --font="B Mitra" --dpi=700 --align left --output $ROOT/img/train_$i.png
+	pango-view --text "$p" --no-display --font="B Mitra" --dpi=1200 --align left --output $ROOT/img/train_$i.png
 	echo $p >> $ROOT/text/train_$i.txt
 	
 	pngtopnm $ROOT/img/train_$i.png > $ROOT/img/train_$i.pnm
