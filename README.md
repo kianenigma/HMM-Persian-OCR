@@ -187,9 +187,18 @@ HPO_HTkFeatShow feaDir/train_100.fea
 
 
 #### HPO_Preprocessing
+Perdorms the main feature extraction phase of HPO. the commands run at this stage depend on scripts that are placed inside `bin` . 
+Note that this feature extraction is compleatly user-dependent. one might change this step as he wishes( see [Notes](https://github.com/Kianp/HMM-Persian-OCR#user-defined-feature-vector) ) 
 
++ PBMSourceImageDir : source of input pbm images  
++ outDir : output directory 
++ feature-dimension : dimention of feature extraction vector ( def. 20 ) 
++ filter-type : type of filter used for image smoothign ( g | u | h ) 
 
-
+Example : 
+```
+HPO_Preprocessing.sh data/img feaDir 20 g
+```
 
 #### HPO_TestMe
 Tests a given string with the trained models. Script should be run inside a test directory . It generates a new image from given text, extract feature vector from it and finds the ML ( Maximum like hood ) . 
@@ -204,7 +213,6 @@ Example :
 ``` 
 HPO_TestMe کیان 64
 ```
-
 
 
 
@@ -240,11 +248,22 @@ HPO_TrainList
 
 
 
-### HPO_CreateHMMsTopology
+#### HPO_CreateHMMsTopology
+Creates a basic topology for hmm model accourding to HTK standards.
+
++ number of observations per state ( note that with this version of feature extraction it MUST be equeal to feature extraction dimention times 3 ) 
++ state-number : number of states created for the model .
+
+Example : 
+```
+HPO_CreateHMMsTopology.sh 60 8 > proto
+```
 
 
 #### HPO_TestUs
 NOT TESTED AND FULLY IMPLEMENTED YET
+
+
 #### HPO_TextTrim
 NOT TESTED AND FULLY IMPLEMENTED YET
 
