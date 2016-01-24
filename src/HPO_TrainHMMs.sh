@@ -4,7 +4,7 @@ export PATH=$PATH:$HOME/bin:$HOME/scripts:.
 
 NAME=${0##*/}
 if [ $# -ne 7 ]; then
-  echo "Usage: $NAME <train.lst> <HMMs-Dir> <proto> <samplesLabels.mlf> <HMMsList>"
+  echo "Usage: $NAME <train.lst> <HMMs-Dir> <proto> <samplesLabels.mlf> <HMMsList> <IterCount> <GaussMixPState>"
   exit
 fi
 
@@ -22,7 +22,7 @@ NUM_ITER=$6
 NUM_GAUSS=$7
 
 
-FLAGSHEREST="-A -T 1 -v 0.01 -m 3 "
+FLAGSHEREST="-A -p 4 -T 1 -v 0.01 -m 3 "
 
 g=1
 while [ $g -le $NUM_GAUSS ]; do
