@@ -4,7 +4,7 @@ var $$ = require("cheerio") ;
 var fs = require('fs') ;
 
 
-var max = 2  ;
+var max = 50   ;
 if (!String.prototype.trim) {
     (function(){
         // Make sure we trim BOM and NBSP
@@ -39,13 +39,60 @@ String.prototype.replaceAll = function(
 
 var cleanChar = function( str ) {
     var _str = "" ;
-    var alph = ["ا","ب","پ","ت","ث","ج","چ","ح","خ","د", "ظ","ط","ض","ص","ش","س","ژ","ز","ر","ذ","و","ن","م","ل","گ","ک","ق","ف","غ","ع","ی" , "ي" , "ئ" , "آ" , "ؤ", "ة", "أ", "إ", "ك", "ء", "ه", " " ]
+    var alph = [
+        "ا"
+        ,"ب"
+        ,"پ"
+        ,"ت"
+        ,"ث"
+        ,"ج"
+        ,"چ"
+        ,"ح"
+        ,"خ"
+        ,"د"
+        , "ظ"
+        ,"ط"
+        ,"ض"
+        ,"ص"
+        ,"ش"
+        ,"س"
+        ,"ژ"
+        ,"ز"
+        ,"ر"
+        ,"ذ"
+        ,"و"
+        ,"ن"
+        ,"م"
+        ,"ل"
+        ,"گ"
+        ,"ک"
+        ,"ق"
+        ,"ف"
+        ,"غ"
+        ,"ع"
+        ,"ی" 
+        , "ه" ]
+    var replace = {
+        "ي" : "ی" , 
+        "ئ" : "ی" , 
+        "ك" : "ک" ,
+        "ي" : "ی" ,
+        "إ" : "ا" ,
+        "أ" : "ا" ,
+        "آ" : "ا" ,
+        "ة" : "ه" 
+    } ; 
+    
     for ( var i =0 ; i < str.length ; i ++ ) {
         if  (alph.indexOf(str[i] ) >  -1 ) {
             _str += str[i];
         }
         else {
-            if ( i < str.length-1 && alph.indexOf(str[i+1]) > -1 ) {
+            if ( replace[str[i]] ) {
+                console.log(str[i] , replace[str[i]] )
+                _str += replace[str[i]] ; 
+            }
+            else if ( i < str.length-1 && alph.indexOf(str[i+1]) > -1 ) {
                 _str += " "
             }
         }
@@ -103,7 +150,7 @@ var recReq = function (page) {
                 var $ = $$.load(body) ;
                 $("div.linear_news a").each(function (i, item) {
                     var text  = cleanChar($(this).text()) ;
-                    //data.push(text)
+                    console.log(text , $(this).text()) ; 
                     stream.write(text + "\n")
                 }) ;
                 console.log("page " + page + " Done " , _page ) ;
@@ -114,9 +161,10 @@ var recReq = function (page) {
 var stream = fs.createWriteStream("news_data_" + max + ".txt");
 stream.once('open', function(fd) {
     fs.writeFile("news_data_" + max + ".txt", '', function(){
-	stream.write(["ا","ب","پ","ت","ث","ج","چ","ح","خ","د", "ظ","ط","ض","ص","ش","س","ژ","ز","ر","ذ","و","ن","م","ل","گ","ک","ق","ف","غ","ع","ی" , "ي" , "ئ" , "آ" , "ؤ", "ة", "أ", "إ", "ك", "ء", "ه", " " ].join(''))
+	//stream.write(["ا","ب","پ","ت","ث","ج","چ","ح","خ","د", "ظ","ط","ض","ص","ش","س","ژ","ز","ر","ذ","و","ن","م","ل","گ","ک","ق","ف","غ","ع","ی" , "ي" , "ئ" , "آ" , "ؤ", "ة", "أ", "إ", "ك", "ء", "ه", " " ].join(''))
         console.log('file cleared') ;
         recReq(1) ;
     }) ;
 
 });
+
